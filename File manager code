@@ -1,0 +1,96 @@
+import os
+
+def create_file(filename, content):
+    with open(filename, 'w') as f:
+        f.write(content)
+    print(f"File '{filename}' created successfully.")
+
+def read_file(filename):
+    if os.path.exists(filename):
+        with open(filename, 'r') as f:
+            print(f.read())
+    else:
+        print("File not found.")
+
+def update_file(filename, content):
+    if os.path.exists(filename):
+        with open(filename, 'a') as f:
+            f.write('\n' + content)
+        print(f"File '{filename}' updated successfully.")
+    else:
+        print("File not found.")
+
+def delete_file(filename):
+    if os.path.exists(filename):
+        os.remove(filename)
+        print(f"File '{filename}' deleted successfully.")
+    else:
+        print("File not found.")
+
+def create_folder(foldername):
+    if not os.path.exists(foldername):
+        os.mkdir(foldername)
+        print(f"Folder '{foldername}' created successfully.")
+    else:
+        print("Folder already exists.")
+
+def delete_folder(foldername):
+    if os.path.exists(foldername):
+        os.rmdir(foldername)
+        print(f"Folder '{foldername}' deleted successfully.")
+    else:
+        print("Folder not found.")
+
+def list_files():
+    files = os.listdir()
+    if files:
+        print("Files and Folders:")
+        for file in files:
+            print(file)
+    else:
+        print("Directory is empty.")
+
+def main():
+    while True:
+        print("\nFile Management System:")
+        print("1. Create File")
+        print("2. Read File")
+        print("3. Update File")
+        print("4. Delete File")
+        print("5. Create Folder")
+        print("6. Delete Folder")
+        print("7. List Files & Folders")
+        print("8. Exit")
+        
+        choice = input("Enter your choice: ")
+        
+        if choice == '1':
+            filename = input("Enter filename: ")
+            content = input("Enter content: ")
+            create_file(filename, content)
+        elif choice == '2':
+            filename = input("Enter filename: ")
+            read_file(filename)
+        elif choice == '3':
+            filename = input("Enter filename: ")
+            content = input("Enter new content: ")
+            update_file(filename, content)
+        elif choice == '4':
+            filename = input("Enter filename: ")
+            delete_file(filename)
+        elif choice == '5':
+            foldername = input("Enter folder name: ")
+            create_folder(foldername)
+        elif choice == '6':
+            foldername = input("Enter folder name: ")
+            delete_folder(foldername)
+        elif choice == '7':
+            list_files()
+        elif choice == '8':
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid choice. Try again.")
+
+if __name__ == "__main__":
+    main()
